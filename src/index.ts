@@ -2373,8 +2373,8 @@ function FlatpickrInstance(
 
         case "range":
           dates = inputDate
-            .split(self.l10n.rangeSeparator)
-            .map(date => self.parseDate(date, format));
+            .split(self.config.conjunction)
+            .map((date) => self.parseDate(date, format));
 
           break;
 
@@ -2713,11 +2713,7 @@ function FlatpickrInstance(
           self.config.enableTime ||
           arr.indexOf(d) === i
       )
-      .join(
-        self.config.mode !== "range"
-          ? self.config.conjunction
-          : self.l10n.rangeSeparator
-      );
+      .join(self.config.conjunction);
   }
 
   /**
