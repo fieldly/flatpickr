@@ -662,8 +662,15 @@ function FlatpickrInstance(
       dayElement = createElement<DayElement>(
         "span",
         "flatpickr-day " + className,
+        ''
+      ),
+      innerDayElement = createElement<DayElement>(
+        "span",
+        '',
         date.getDate().toString()
       );
+
+    dayElement.appendChild(innerDayElement);
 
     dayElement.dateObj = date;
     dayElement.$i = i;
@@ -1247,7 +1254,7 @@ function FlatpickrInstance(
     for (let i = self.config.showMonths; i--; ) {
       self.weekdayContainer.children[i].innerHTML = `
       <span class='flatpickr-weekday'>
-        ${weekdays.join("</span><span class='flatpickr-weekday'>")}
+        ${weekdays.map((day) => day.charAt(0)).join("</span><span class='flatpickr-weekday'>")}
       </span>
       `;
     }
@@ -2429,7 +2436,7 @@ function FlatpickrInstance(
 
         case "range":
           dates = inputDate
-            .split(self.l10n.rangeSeparator)
+            .split(self.config.conjunction)
             .map((date) => self.parseDate(date, format));
 
           break;
@@ -2760,11 +2767,7 @@ function FlatpickrInstance(
           self.config.enableTime ||
           arr.indexOf(d) === i
       )
-      .join(
-        self.config.mode !== "range"
-          ? self.config.conjunction
-          : self.l10n.rangeSeparator
-      );
+      .join(self.config.conjunction);
   }
 
   /**
