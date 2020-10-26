@@ -12,14 +12,12 @@ export declare const HOOKS: HookKey[];
 export declare type Plugin<E = {}> = (fp: Instance & E) => Options;
 export interface BaseOptions {
     allowInput: boolean;
-    allowInvalidPreload: boolean;
     altFormat: string;
     altInput: boolean;
     altInputClass: string;
     animate: boolean;
     appendTo: HTMLElement;
     ariaDateFormat: string;
-    autoFillDefaultTime: boolean;
     clickOpens: boolean;
     closeOnSelect: boolean;
     conjunction: string;
@@ -64,7 +62,7 @@ export interface BaseOptions {
     onPreCalendarPosition: Hook | Hook[];
     parseDate: (date: string, format: string) => Date;
     plugins: Plugin[];
-    position: "auto" | "above" | "below" | ((self: Instance, customElement: HTMLElement | undefined) => void);
+    position: "auto" | "above" | "below";
     positionElement: Element;
     prevArrow: string;
     shorthandCurrentMonth: boolean;
@@ -83,14 +81,12 @@ export interface ParsedOptions {
     _minDate?: Date;
     _minTime?: Date;
     allowInput: boolean;
-    allowInvalidPreload: boolean;
     altFormat: string;
     altInput: boolean;
     altInputClass: string;
     animate: boolean;
     appendTo?: HTMLElement;
     ariaDateFormat: string;
-    autoFillDefaultTime: boolean;
     clickOpens: boolean;
     closeOnSelect: boolean;
     conjunction: string;
